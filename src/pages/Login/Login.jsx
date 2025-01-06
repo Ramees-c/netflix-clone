@@ -10,15 +10,19 @@ import { auth, db } from "../../config/firebase";
 import { addDoc, collection } from "firebase/firestore";
 import { toast } from "react-toastify";
 
+import netflex_spinner from "../../assets/netflix_spinner.gif"
+
 function Login() {
   const [signState, setSignState] = useState("Sign In");
 
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("")
+  const [isLoading, setIsLoading] = useState(false)
 
   const signup = async (e) => {
     e.preventDefault()
+    setIsLoading(true)
     try {
       const response = await createUserWithEmailAndPassword(
         auth,
@@ -36,21 +40,28 @@ function Login() {
       console.error(error.message);
       toast.error(error.code.split('/')[1].split('-').join(" "))
     }
+    setIsLoading(false)
   };
 
   const login = async (e) => {
     e.preventDefault()
+    setIsLoading(true)
     try {
       const response = await signInWithEmailAndPassword(auth, email, password);
     } catch (error) {
       console.error(error.message)
       toast.error(error.code.split('/')[1].split('-').join(" "))
     }
+    setIsLoading(false)
   };
 
   
 
   return (
+    isLoading ? 
+    <div className="loading-spinner">
+      <img src={netflex_spinner} alt="" />
+    </div> :
     <div className="login">
       <img src={logo} alt="logo" className="login-logo" />
       <div className="login-form">

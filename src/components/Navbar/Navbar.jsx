@@ -5,6 +5,8 @@ import search_icon from "../../assets/search_icon.svg";
 import bell_icon from "../../assets/bell_icon.svg";
 import profile_img from "../../assets/profile_img.png";
 import caret_icon from "../../assets/caret_icon.svg";
+import { signOut } from "firebase/auth";
+import { auth } from "../../config/firebase";
 
 function Navbar() {
   const navRef = useRef();
@@ -18,6 +20,10 @@ function Navbar() {
       }
     })
   }, [])
+
+  const logout = async () => {
+    await signOut(auth)
+  }
   
   return (
     <div ref={navRef} className="navbar">
@@ -40,7 +46,7 @@ function Navbar() {
           <img src={profile_img} alt="icon" className="profile" />
           <img src={caret_icon} alt="icon" />
           <div className="dropdown">
-            <p>sign out of Netflix</p>
+            <p onClick={logout}>sign out of Netflix</p>
           </div>
         </div>
       </div>

@@ -12,19 +12,19 @@ function Navbar() {
   const navRef = useRef();
 
   useEffect(() => {
-    window.addEventListener('scroll', ()=>{
-      if(window.scrollY >= 80) {
-        navRef.current.classList.add('nav-dark')
-      }else{
-        navRef.current.classList.remove('nav-dark')
+    window.addEventListener("scroll", () => {
+      if (window.scrollY >= 80) {
+        navRef.current.classList.add("nav-dark");
+      } else {
+        navRef.current.classList.remove("nav-dark");
       }
-    })
-  }, [])
+    });
+  }, []);
 
   const logout = async () => {
-    await signOut(auth)
-  }
-  
+    await signOut(auth);
+  };
+
   return (
     <div ref={navRef} className="navbar">
       <div className="navbar-left">

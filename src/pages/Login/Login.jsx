@@ -4,25 +4,25 @@ import "./Login.css";
 import logo from "../../assets/logo.png";
 import {
   createUserWithEmailAndPassword,
-  signInWithEmailAndPassword
+  signInWithEmailAndPassword,
 } from "firebase/auth";
 import { auth, db } from "../../config/firebase";
 import { addDoc, collection } from "firebase/firestore";
 import { toast } from "react-toastify";
 
-import netflex_spinner from "../../assets/netflix_spinner.gif"
+import netflex_spinner from "../../assets/netflix_spinner.gif";
 
 function Login() {
   const [signState, setSignState] = useState("Sign In");
 
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("")
-  const [isLoading, setIsLoading] = useState(false)
+  const [password, setPassword] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
   const signup = async (e) => {
-    e.preventDefault()
-    setIsLoading(true)
+    e.preventDefault();
+    setIsLoading(true);
     try {
       const response = await createUserWithEmailAndPassword(
         auth,
@@ -38,46 +38,62 @@ function Login() {
       });
     } catch (error) {
       console.error(error.message);
-      toast.error(error.code.split('/')[1].split('-').join(" "))
+      toast.error(error.code.split("/")[1].split("-").join(" "));
     }
-    setIsLoading(false)
+    setIsLoading(false);
   };
 
   const login = async (e) => {
-    e.preventDefault()
-    setIsLoading(true)
+    e.preventDefault();
+    setIsLoading(true);
     try {
       const response = await signInWithEmailAndPassword(auth, email, password);
     } catch (error) {
-      console.error(error.message)
-      toast.error(error.code.split('/')[1].split('-').join(" "))
+      console.error(error.message);
+      toast.error(error.code.split("/")[1].split("-").join(" "));
     }
-    setIsLoading(false)
+    setIsLoading(false);
   };
 
-  
-
-  return (
-    isLoading ? 
+  return isLoading ? (
     <div className="loading-spinner">
       <img src={netflex_spinner} alt="" />
-    </div> :
+    </div>
+  ) : (
     <div className="login">
       <img src={logo} alt="logo" className="login-logo" />
       <div className="login-form">
         <h1>{signState}</h1>
-        <form onSubmit={signState === "Sign Up" ?
-          signup :
-          login
-        }>
+        <form onSubmit={signState === "Sign Up" ? signup : login}>
           {signState === "Sign Up" ? (
-            <input type="text" value={name} onChange={(e) => {setName(e.target.value)}} placeholder="Your name" />
+            <input
+              type="text"
+              value={name}
+              onChange={(e) => {
+                setName(e.target.value);
+              }}
+              placeholder="Your name"
+            />
           ) : (
             <></>
           )}
 
-          <input type="email" value={email} onChange={(e) => {setEmail(e.target.value)}} placeholder="Email" />
-          <input type="password" value={password} onChange={(e) => {setPassword(e.target.value)}} placeholder="Password" />
+          <input
+            type="email"
+            value={email}
+            onChange={(e) => {
+              setEmail(e.target.value);
+            }}
+            placeholder="Email"
+          />
+          <input
+            type="password"
+            value={password}
+            onChange={(e) => {
+              setPassword(e.target.value);
+            }}
+            placeholder="Password"
+          />
           <button type="submit">{signState}</button>
           <div className="form-help">
             <div className="rember">

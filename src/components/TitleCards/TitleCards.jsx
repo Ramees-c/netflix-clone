@@ -4,11 +4,11 @@ import axios from "axios";
 import { API_KEY, BASE_URL, imageUrl } from "../../Api/Api";
 import { Link } from "react-router-dom";
 
-import netflex_spinner from "../../assets/netflix_spinner.gif"
+import netflex_spinner from "../../assets/netflix_spinner.gif";
 
 function TitleCards({ title, category }) {
   const [movies, setMovies] = useState([]);
-  const [isLoading, setIsLoading] = useState(false)
+  const [isLoading, setIsLoading] = useState(false);
   const cardsRef = useRef();
 
   const handleWheel = (e) => {
@@ -18,7 +18,7 @@ function TitleCards({ title, category }) {
 
   useEffect(() => {
     const getMovies = async () => {
-      setIsLoading(true)
+      setIsLoading(true);
       try {
         const response = await axios.get(
           `${BASE_URL}/movie/${
@@ -29,22 +29,19 @@ function TitleCards({ title, category }) {
       } catch (error) {
         console.error(error.message);
       }
-      setIsLoading(false)
+      setIsLoading(false);
     };
     getMovies();
   }, []);
 
-
   useEffect(() => {
     cardsRef.current.addEventListener("wheel", handleWheel);
   }, []);
-  return (
-    isLoading ?
+  return isLoading ? (
     <div className="loading-spinner">
       <img src={netflex_spinner} alt="" />
-    </div> 
-      :
-      
+    </div>
+  ) : (
     <div className="title-cards">
       <h2>{title ? title : "Popular on Netflix"}</h2>
       <div className="card-list" ref={cardsRef}>

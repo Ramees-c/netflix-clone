@@ -1,52 +1,81 @@
 .title-cards {
-    margin-top: 50px;
-    margin-bottom: 30px;
+  margin-top: 50px;
+  margin-bottom: 30px;
 }
 
 .title-cards h2 {
-    margin-bottom: 8px;
+  margin-bottom: 8px;
 }
 
 .card-list {
-    display: flex;
-    gap: 10px;
-    overflow-x: scroll;
+  display: flex;
+  gap: 10px;
+  overflow-x: scroll;
 }
 
 .card-list::-webkit-scrollbar {
-    display: none;
+  display: none;
 }
 
 .card-list img {
-    width: 240px;
-    border-radius: 4px;
-    cursor: pointer;
+  width: 240px;
+  border-radius: 4px;
+  cursor: pointer;
 }
 
 .card-list .card {
-    position: relative;
+  position: relative;
 }
 
 .card-list .card p {
-    position: absolute;
-    bottom: 10px;
-    right: 10px;
-    color: #fff;
-    text-decoration: none;
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  color: #fff;
+  text-decoration: none;
 }
 
 .more-cards {
-    padding-left: 6%;
+  padding-left: 6%;
 }
 
 .loading-spinner {
-    width: 100%;
-    height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .loading-spinner img {
-    width: 60px;
+  width: 60px;
+}
+
+@media (max-width: 800px) {
+  .title-cards {
+    margin-top: 20px;
+    margin-bottom: 0;
+  }
+
+  .title-cards h2 {
+    font-size: 20px;
+  }
+  .card-list img {
+    width: 200px;
+  }
+  .card-list p {
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 500px) {
+  .title-cards h2 {
+    font-size: 15px;
+  }
+  .card-list img {
+    width: 165px;
+  }
+  .card-list p {
+    font-size: 10px;
+  }
 }

@@ -72,7 +72,7 @@ function Login() {
               onChange={(e) => {
                 setName(e.target.value);
               }}
-              placeholder="Your name"
+              placeholder="Enter name"
             />
           ) : (
             <></>
@@ -84,7 +84,7 @@ function Login() {
             onChange={(e) => {
               setEmail(e.target.value);
             }}
-            placeholder="Email"
+            placeholder="user123@gmail.com"
           />
           <input
             type="password"
@@ -92,7 +92,7 @@ function Login() {
             onChange={(e) => {
               setPassword(e.target.value);
             }}
-            placeholder="Password"
+            placeholder="user123"
           />
           <button type="submit">{signState}</button>
           <div className="form-help">
